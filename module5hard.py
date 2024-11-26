@@ -1,3 +1,5 @@
+import time
+
 class User:
     def __init__(self, nickname, password, age):
         self.nickname = nickname
@@ -70,11 +72,13 @@ class UrTube:
                     return
                 for i in range(video.duration):
                     print(i + 1)
+                    time.sleep(1)  
                 print('Конец видео')
                 video.time_now = 0
                 return
         print('Видео не найдено')
 
+# Создание объектов
 ur = UrTube()
 v1 = Video('Лучший язык программирования 2024 года', 200)
 v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
@@ -83,8 +87,8 @@ v2 = Video('Для чего девушкам парень программист
 ur.add(v1, v2)
 
 # Проверка поиска
-print(ur.get_videos('лучший'))
-print(ur.get_videos('ПРОГ'))
+print(ur.get_videos('лучший'))  # ['Лучший язык программирования 2024 года']
+print(ur.get_videos('ПРОГ'))  # ['Лучший язык программирования 2024 года', 'Для чего девушкам парень программист?']
 
 # Проверка на вход пользователя и возрастное ограничение
 ur.watch_video('Для чего девушкам парень программист?')
@@ -99,3 +103,4 @@ print(ur.current_user)
 
 # Попытка воспроизведения несуществующего видео
 ur.watch_video('Лучший язык программирования 2024 года!')
+        
