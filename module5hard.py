@@ -1,3 +1,6 @@
+
+
+        
 import time
 
 
@@ -6,6 +9,9 @@ class User:
         self.nickname = nickname
         self.password = hash(password)
         self.age = age
+
+    def __str__(self):
+        return f'{self.nickname}'
 
 
 class Video:
@@ -50,7 +56,7 @@ class UrTube:
         my_list = []
         for video in self.videos:
             if keyword.lower() in video.title.lower():
-                my_list.append(keyword)
+                my_list.append(video.title)
         return my_list
 
     def watch_video(self, title):
@@ -66,6 +72,9 @@ class UrTube:
                     print(i)
                     time.sleep(1)
                 print('Конец видео')
+            else:
+                print(f'Видео {title} не найдено ')
+
 
 
 ur = UrTube()
@@ -92,5 +101,3 @@ print(ur.current_user)
 
 # Попытка воспроизведения несуществующего видео
 ur.watch_video('Лучший язык программирования 2024 года!')
-
-        
